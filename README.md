@@ -44,3 +44,32 @@ La técnica Pomodoro propone dividir el tiempo en intervalos de trabajo y descan
 
 asi? y luego al final le pego
 docs: add Project README
+
+
+
+## Funcionalidades implementadas ✅
+
+### Login
+- [x] Pantalla de inicio de sesión con campos de email y contraseña
+- [x] Validación de formato de email
+- [x] Validación de contraseña (mínimo 6 caracteres)
+- [x] Mensajes de error en tiempo real
+- [x] Navegación a pantalla de Registro
+- [x] Navegación a pantalla principal tras autenticación exitosa
+
+### Registro
+- [x] Pantalla de registro con campos: email, contraseña, confirmar contraseña
+- [x] Validación de formato de email
+- [x] Validación de contraseña (mínimo 6 caracteres)
+- [x] Validación de coincidencia de contraseñas
+- [x] Almacenamiento de credenciales en SharedPreferences
+- [x] Mensaje de confirmación de registro exitoso
+
+### Pantalla Principal
+- [x] Pantalla de bienvenida con título "Tempodoro"
+- [x] Subtítulo "Tu asistente de concentración"
+- [x] Diseño limpio y minimalista con Material Design
+
+### Navegación
+- [x] Flujo completo: Login → Registro → Pantalla Principal
+- [x] Cierre automático de actividades al navegar
