@@ -42,7 +42,7 @@ La técnica Pomodoro propone dividir el tiempo en intervalos de trabajo y descan
    ```bash
    git clone https://github.com/jhosst-ip/tempodoro-android.git
 
-asi? y luego al final le pego
+
 docs: add Project README
 
 
