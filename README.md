@@ -73,3 +73,40 @@ docs: add Project README
 ### Navegación
 - [x] Flujo completo: Login → Registro → Pantalla Principal
 - [x] Cierre automático de actividades al navegar
+
+
+# Actualización 
+
+## Descripción
+Aplicación móvil Android para gestionar sesiones Pomodoro con autenticación, estadísticas y almacenamiento local.
+
+# Tempodoro
+
+## Descripción
+Aplicación Android para gestionar tareas mediante la técnica Pomodoro.
+
+## Arquitectura
+MVVM
+
+Activity
+↓
+ViewModel
+↓
+Repository
+↓
+DAO
+↓
+Room Database
+↓
+LiveData
+↓
+RecyclerView
+
+## Funcionalidades
+
+- CRUD de tareas
+- Login y Registro
+- Room Database
+- RecyclerView
+- Temporizador Pomodoro
+- Notificaciones
