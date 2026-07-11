@@ -1,22 +1,32 @@
 package com.ipial.jhostyn.tempodoro.activities
 
-import android.content.Intent
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import com.ipial.jhostyn.tempodoro.databinding.ActivityLoginBinding
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Bundle
+import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.lifecycleScope
+import com.ipial.jhostyn.tempodoro.databinding.ActivityLoginBinding
+import com.ipial.jhostyn.tempodoro.viewmodel.UsuarioViewModel
+import kotlinx.coroutines.launch
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
 
+    private val usuarioViewModel: UsuarioViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 
-            if (ContextCompat.checkSelfPermission(
+            if (
+                ContextCompat.checkSelfPermission(
                     this,
                     Manifest.permission.POST_NOTIFICATIONS
                 ) != PackageManager.PERMISSION_GRANTED
@@ -27,10 +37,9 @@ class LoginActivity : AppCompatActivity() {
                     arrayOf(Manifest.permission.POST_NOTIFICATIONS),
                     100
                 )
-
             }
-
         }
+
         super.onCreate(savedInstanceState)
 
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -38,22 +47,65 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnLogin.setOnClickListener {
 
-            startActivity(
-                Intent(this, HomeActivity::class.java)
-            )
+            val correo = binding.edtCorreo.text.toString().trim()
+            val password = binding.edtPassword.text.toString().trim()
 
-            finish()
+            if (correo.isEmpty()) {
+                binding.edtCorreo.error = "Ingrese su correo"
+                binding.edtCorreo.requestFocus()
+                return@setOnClickListener
+            }
 
+            if (password.isEmpty()) {
+                binding.edtPassword.error = "Ingrese su contraseña"
+                binding.edtPassword.requestFocus()
+                return@setOnClickListener
+            }
+
+            lifecycleScope.launch {
+
+                val usuario = usuarioViewModel.login(
+                    correo,
+                    password
+                )
+
+                if (usuario != null) {
+
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Bienvenido ${usuario.nombre}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    startActivity(
+                        Intent(
+                            this@LoginActivity,
+                            HomeActivity::class.java
+                        )
+                    )
+
+                    finish()
+
+                } else {
+
+                    Toast.makeText(
+                        this@LoginActivity,
+                        "Correo o contraseña incorrectos",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                }
+            }
         }
 
         binding.btnIrRegistro.setOnClickListener {
 
             startActivity(
-                Intent(this, RegisterActivity::class.java)
+                Intent(
+                    this,
+                    RegisterActivity::class.java
+                )
             )
-
         }
-
     }
-
 }

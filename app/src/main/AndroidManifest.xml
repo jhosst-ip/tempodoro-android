@@ -42,6 +42,8 @@
         <activity
             android:name=".activities.PomodoroActivity"
             android:exported="false"/>
+        <activity
+            android:name=".activities.EstadisticasActivity"/>
 
     </application>
 

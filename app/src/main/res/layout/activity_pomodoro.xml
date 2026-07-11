@@ -1,32 +1,111 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="24dp">
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/txtTiempo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="25:00"
-        android:textSize="50sp"
-        android:textStyle="bold"/>
-
-    <Button
-        android:id="@+id/btnIniciar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Iniciar"
-        android:layout_marginTop="30dp"/>
+        android:orientation="vertical"
+        android:padding="24dp">
 
-    <Button
-        android:id="@+id/btnReiniciar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Reiniciar"
-        android:layout_marginTop="12dp"/>
+        <Button
+            android:id="@+id/btnVolver"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="← Volver"/>
 
-</LinearLayout>
+        <TextView
+            android:id="@+id/txtTitulo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre de la tarea"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp"/>
+
+        <TextView
+            android:id="@+id/txtEstado"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Modo estudio"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/txtProgreso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0/3"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/txtTiempo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="25:00"
+            android:textAlignment="center"
+            android:textSize="64sp"
+            android:textStyle="bold"
+            android:layout_marginTop="32dp"/>
+
+        <EditText
+            android:id="@+id/edtPomodoro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Minutos de estudio (25)"
+            android:inputType="number"
+            android:layout_marginTop="32dp"/>
+
+        <EditText
+            android:id="@+id/edtDescanso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Minutos de descanso (5)"
+            android:inputType="number"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnGuardarConfiguracion"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Guardar tiempos"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnIniciar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="▶ Iniciar"
+            android:layout_marginTop="24dp"/>
+
+        <Button
+            android:id="@+id/btnPausar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⏸ Pausar"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnSaltar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="⏭ Saltar fase"
+            android:layout_marginTop="12dp"/>
+
+        <Button
+            android:id="@+id/btnReiniciar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="↺ Reiniciar"
+            android:layout_marginTop="12dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

@@ -14,6 +14,13 @@ class TareaViewModel(application: Application) : AndroidViewModel(application) {
     private val repository: TareaRepository
 
     val listaTareas: LiveData<List<Tarea>>
+    val totalTareas: LiveData<Int>
+
+    val tareasCompletadas: LiveData<Int>
+
+    val pomodorosCompletados: LiveData<Int>
+
+    val pomodorosEstimados: LiveData<Int>
 
     init {
 
@@ -22,6 +29,14 @@ class TareaViewModel(application: Application) : AndroidViewModel(application) {
         repository = TareaRepository(dao)
 
         listaTareas = repository.listaTareas
+
+        totalTareas = repository.totalTareas
+
+        tareasCompletadas = repository.tareasCompletadas
+
+        pomodorosCompletados = repository.pomodorosCompletados
+
+        pomodorosEstimados = repository.pomodorosEstimados
     }
 
     fun insertar(tarea: Tarea) {

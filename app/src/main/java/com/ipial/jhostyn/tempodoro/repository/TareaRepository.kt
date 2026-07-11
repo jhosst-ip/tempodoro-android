@@ -10,6 +10,13 @@ class TareaRepository(
 
     val listaTareas: LiveData<List<Tarea>> = dao.obtenerTodas()
 
+    val totalTareas = dao.totalTareas()
+
+    val tareasCompletadas = dao.tareasCompletadas()
+
+    val pomodorosCompletados = dao.pomodorosCompletados()
+
+    val pomodorosEstimados = dao.pomodorosEstimados()
     suspend fun insertar(tarea: Tarea) {
         dao.insertar(tarea)
     }

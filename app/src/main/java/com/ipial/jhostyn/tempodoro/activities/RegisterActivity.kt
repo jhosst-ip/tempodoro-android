@@ -13,7 +13,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityRegisterBinding
 
-    private val viewModel: UsuarioViewModel by viewModels()
+    private val usuarioViewModel: UsuarioViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,9 +27,28 @@ class RegisterActivity : AppCompatActivity() {
             val correo = binding.edtCorreo.text.toString().trim()
             val password = binding.edtPassword.text.toString().trim()
 
-            if (nombre.isEmpty() || correo.isEmpty() || password.isEmpty()) {
+            if (nombre.isEmpty()) {
+                binding.edtNombre.error = "Ingrese su nombre"
+                binding.edtNombre.requestFocus()
+                return@setOnClickListener
+            }
 
-                Toast.makeText(this, "Complete todos los campos", Toast.LENGTH_SHORT).show()
+            if (correo.isEmpty()) {
+                binding.edtCorreo.error = "Ingrese su correo"
+                binding.edtCorreo.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.isEmpty()) {
+                binding.edtPassword.error = "Ingrese una contraseña"
+                binding.edtPassword.requestFocus()
+                return@setOnClickListener
+            }
+
+            if (password.length < 6) {
+                binding.edtPassword.error =
+                    "La contraseña debe tener mínimo 6 caracteres"
+                binding.edtPassword.requestFocus()
                 return@setOnClickListener
             }
 
@@ -39,15 +58,22 @@ class RegisterActivity : AppCompatActivity() {
                 password = password
             )
 
-            viewModel.registrar(usuario)
+            usuarioViewModel.registrar(usuario)
 
-            Toast.makeText(this, "Usuario registrado", Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                this,
+                "Usuario registrado correctamente",
+                Toast.LENGTH_SHORT
+            ).show()
 
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(
+                Intent(
+                    this,
+                    LoginActivity::class.java
+                )
+            )
+
             finish()
-
         }
-
     }
-
 }

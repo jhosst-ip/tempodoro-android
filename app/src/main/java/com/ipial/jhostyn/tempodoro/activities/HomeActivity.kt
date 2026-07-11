@@ -13,8 +13,6 @@ class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityHomeBinding
 
-    private lateinit var adapter: TareaAdapter
-
     private val viewModel: TareaViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,7 +27,10 @@ class HomeActivity : AppCompatActivity() {
 
             { tarea ->
 
-                val intent = Intent(this, EditarTareaActivity::class.java)
+                val intent = Intent(
+                    this,
+                    EditarTareaActivity::class.java
+                )
 
                 intent.putExtra("id", tarea.id)
                 intent.putExtra("titulo", tarea.titulo)
@@ -45,9 +46,18 @@ class HomeActivity : AppCompatActivity() {
 
             { tarea ->
 
-                val intent = Intent(this, PomodoroActivity::class.java)
+                val intent = Intent(
+                    this,
+                    PomodoroActivity::class.java
+                )
 
                 intent.putExtra("id", tarea.id)
+                intent.putExtra("titulo", tarea.titulo)
+                intent.putExtra("estimados", tarea.pomodorosEstimados)
+                intent.putExtra(
+                    "completados",
+                    tarea.pomodorosCompletados
+                )
 
                 startActivity(intent)
 
@@ -55,23 +65,36 @@ class HomeActivity : AppCompatActivity() {
 
         )
 
-        binding.recyclerTareas.layoutManager = LinearLayoutManager(this)
+        binding.recyclerTareas.layoutManager =
+            LinearLayoutManager(this)
+
         binding.recyclerTareas.adapter = adapter
 
         viewModel.listaTareas.observe(this) { lista ->
+
             adapter.actualizarLista(lista)
+
         }
 
         binding.btnNuevaTarea.setOnClickListener {
-            startActivity(Intent(this, NuevaTareaActivity::class.java))
-        }
-        binding.btnPomodoro.setOnClickListener {
 
             startActivity(
-                Intent(this, PomodoroActivity::class.java)
+                Intent(
+                    this,
+                    NuevaTareaActivity::class.java
+                )
+            )
+
+        }
+        binding.btnEstadisticas.setOnClickListener {
+
+            startActivity(
+                Intent(
+                    this,
+                    EstadisticasActivity::class.java
+                )
             )
 
         }
     }
-
 }
