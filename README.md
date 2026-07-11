@@ -110,3 +110,39 @@ RecyclerView
 - RecyclerView
 - Temporizador Pomodoro
 - Notificaciones
+
+---
+
+## Últimas actualizaciones 🚀
+
+### Estadísticas
+- [x] Pantalla de estadísticas de uso.
+- [x] Visualización de sesiones completadas.
+- [x] Seguimiento del progreso del usuario.
+
+### Calidad del software y pruebas
+- [x] Pruebas unitarias con JUnit 4.
+- [x] Validación de correo electrónico.
+- [x] Validación de contraseñas.
+- [x] Pruebas de integración para operaciones CRUD.
+- [x] Pruebas de interfaz utilizando Espresso.
+- [x] Validación con usuarios mediante focus group.
+
+### Tecnologías utilizadas
+- Kotlin
+- Android Studio
+- Room Database
+- ViewModel
+- LiveData
+- RecyclerView
+- JUnit 4
+- Espresso
+- Git y GitHub
+
+### Estado actual del proyecto
+- Registro e inicio de sesión funcional.
+- CRUD completo de tareas.
+- Temporizador Pomodoro funcional.
+- Estadísticas implementadas.
+- Persistencia local con Room.
+- Pruebas automatizadas implementadas.
