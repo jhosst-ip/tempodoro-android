@@ -6,11 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import com.ipial.jhostyn.tempodoro.databinding.ActivityPomodoroBinding
 import com.ipial.jhostyn.tempodoro.utils.NotificationHelper
 
-
+import androidx.activity.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.ipial.jhostyn.tempodoro.viewmodel.TareaViewModel
+import kotlinx.coroutines.launch
 
 class PomodoroActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPomodoroBinding
+    private val viewModel: TareaViewModel by viewModels()
+
+    private var idTarea = 0
 
     private var timer: CountDownTimer? = null
 
@@ -38,6 +44,7 @@ class PomodoroActivity : AppCompatActivity() {
 
         completados = intent.getIntExtra("completados", 0)
         estimados = intent.getIntExtra("estimados", 1)
+        idTarea = intent.getIntExtra("id", 0)
 
         binding.txtTitulo.text = titulo
         binding.txtProgreso.text = "$completados/$estimados"
@@ -145,6 +152,29 @@ class PomodoroActivity : AppCompatActivity() {
                     binding.txtProgreso.text =
                         "$completados/$estimados"
 
+                    // Guarda el progreso en la base de datos
+                    lifecycleScope.launch {
+
+                        val tarea = viewModel.obtenerPorId(idTarea)
+
+                        if (tarea != null) {
+
+                            viewModel.actualizar(
+
+                                tarea.copy(
+
+                                    pomodorosCompletados = completados,
+
+                                    estado =
+                                        if (completados >= tarea.pomodorosEstimados)
+                                            "Completada"
+                                        else
+                                            tarea.estado
+                                )
+                            )
+                        }
+                    }
+
                     NotificationHelper(this@PomodoroActivity)
                         .mostrarNotificacion(
                             "Pomodoro terminado",
@@ -158,6 +188,7 @@ class PomodoroActivity : AppCompatActivity() {
                                 "Tarea completada",
                                 "Has completado todos los pomodoros."
                             )
+
                         finish()
 
                     } else {
